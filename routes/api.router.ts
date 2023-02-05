@@ -45,19 +45,8 @@ videoRouter.post('/', (req: Request, res: Response) => {
 
 videoRouter.get('/:id', (req: Request, res: Response) => {
     if(videosList.find(i => i.id === +req.params.id)){
-        if(!req.body.title||!req.body.author){
-            res.status(400).send({
-                "error messages" : [
-                    {
-                        "message": "No title or author",
-                        "field": "title or author"
-                    }
-                ]
-            })
-        } else {
             let videoUnit = videosList.find(i => i.id === +req.params.id)
             res.status(200).send(videoUnit)
-        }
     }else{
         res.send(404)
     }
