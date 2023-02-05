@@ -2,7 +2,7 @@ import { Request, Response, Router } from "express";
 
 const videoRouter = Router();
 
-let videosList: Array<Video> = [{ id: 1, title: 'Крепкий орешек', author: 'Джон Мактирнан', canBeDownloaded: true, minAgeRestriction: 18 },
+export let videosList: Array<Video> = [{ id: 1, title: 'Крепкий орешек', author: 'Джон Мактирнан', canBeDownloaded: true, minAgeRestriction: 18 },
                 { id: 2, title: 'Джентльмены', author: 'Тарантино', canBeDownloaded: true, minAgeRestriction: 18 },
                 { id: 3, title: 'Avatar', author: 'Vfhnby', canBeDownloaded: true, minAgeRestriction: 6 }
 ];
@@ -87,6 +87,11 @@ videoRouter.delete('/:id', (req: Request, res: Response) => {
         }
     }
 
+});
+
+videoRouter.delete('/', (req: Request, res: Response) => {
+    videosList = []
+    res.send(204)
 });
 
 export default videoRouter;
