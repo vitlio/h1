@@ -26,11 +26,11 @@ type Video = {
 
 }
 
-videoRouter.get('/videos', (req: Request, res: Response) => {
+app.get('/videos', (req: Request, res: Response) => {
     res.send(videosList)
 });
 
-videoRouter.post('/videos', (req: Request, res: Response) => {
+app.post('/videos', (req: Request, res: Response) => {
     // let newVideoUnit = req.body;
     if(!req.body.title||!req.body.author){
         res.status(400).send({
@@ -50,7 +50,7 @@ videoRouter.post('/videos', (req: Request, res: Response) => {
     }
 });
 
-videoRouter.get('/videos/:id', (req: Request, res: Response) => {
+app.get('/videos/:id', (req: Request, res: Response) => {
     if(videosList.find(i => i.id === +req.params.id)){
             let videoUnit = videosList.find(i => i.id === +req.params.id)
             res.status(200).send(videoUnit)
@@ -59,7 +59,7 @@ videoRouter.get('/videos/:id', (req: Request, res: Response) => {
     }
 });
 
-videoRouter.put('/videos/:id', (req: Request, res: Response) => {
+app.put('/videos/:id', (req: Request, res: Response) => {
     let updateUnit = videosList.find(i => i.id === +req.params.id)
     if(updateUnit){
         if(!req.body.title||!req.body.author){
@@ -80,7 +80,7 @@ videoRouter.put('/videos/:id', (req: Request, res: Response) => {
     }
 });
 
-videoRouter.delete('/videos/:id', (req: Request, res: Response) => {
+app.delete('/videos/:id', (req: Request, res: Response) => {
         let deleteUnit = videosList.find(i => i.id === +req.params.id)
         if(deleteUnit){
             videosList.splice(videosList.indexOf(deleteUnit), 1)
@@ -90,7 +90,7 @@ videoRouter.delete('/videos/:id', (req: Request, res: Response) => {
         }
 });
 
-videoRouter.delete('/testing/all-data', (req: Request, res: Response) => {
+app.delete('/testing/all-data', (req: Request, res: Response) => {
     videosList = []
     res.send(204)
     return
