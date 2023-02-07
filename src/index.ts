@@ -36,12 +36,21 @@ app.get('/videos', (req: Request, res: Response) => {
 
 app.post('/videos', (req: Request, res: Response) => {
     // let newVideoUnit = req.body;
-    if(!req.body.title||!req.body.author||typeof req.body.title !== "string"||typeof req.body.author !== "string"){
+    if(!req.body.title||typeof req.body.title !== "string"){
         res.status(400).send({
             "error messages" : [
                 {
                     "message": "No title or author",
-                    "field": "title or author"
+                    "field": "title"
+                }
+            ]
+        })
+    }else if(!req.body.author||typeof req.body.author !== "string"){
+        res.status(400).send({
+            "error messages" : [
+                {
+                    "message": "No title or author",
+                    "field": "author"
                 }
             ]
         })
@@ -53,7 +62,7 @@ app.post('/videos', (req: Request, res: Response) => {
             canBeDownloaded: req.body.canBeDownloaded,
             minAgeRestriction: req.body.minAgeRestriction,
             createdAt: new Date().toISOString(),
-            publicationDate: new Date().toISOString(),
+            publicationDate: new Date(new Date().setDate(new Date().getDate() + 1)).toISOString(),
             availableResolutions: req.body.availableResolutions
         }
         videosList = [...videosList, newVideoUnit];
@@ -75,12 +84,21 @@ app.get('/videos/:id', (req: Request, res: Response) => {
 app.put('/videos/:id', (req: Request, res: Response) => {
     let updateUnit = videosList.find(i => i.id === +req.params.id)
     if(updateUnit){
-        if(!req.body.title||!req.body.author||typeof req.body.title !== "string"||typeof req.body.author !== "string"){
+        if(!req.body.title||typeof req.body.title !== "string"){
             res.status(400).send({
                 "error messages" : [
                     {
                         "message": "No title or author",
-                        "field": "title or author"
+                        "field": "title"
+                    }
+                ]
+            })
+        }else if(!req.body.author||typeof req.body.author !== "string"){
+            res.status(400).send({
+                "error messages" : [
+                    {
+                        "message": "No title or author",
+                        "field": "author"
                     }
                 ]
             })
