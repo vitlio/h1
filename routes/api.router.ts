@@ -74,10 +74,6 @@ videoRouter.put('/:id', (req: Request, res: Response) => {
 });
 
 videoRouter.delete('/:id', (req: Request, res: Response) => {
-    if(req.params.id === 'all-data'){
-        videosList = []
-        res.send(204)
-    }else{
         let deleteUnit = videosList.find(i => i.id === +req.params.id)
         if(deleteUnit){
             videosList.splice(videosList.indexOf(deleteUnit), 1)
@@ -85,8 +81,6 @@ videoRouter.delete('/:id', (req: Request, res: Response) => {
         }else{
             res.send(404)
         }
-    }
-
 });
 
 videoRouter.delete('/', (req: Request, res: Response) => {
