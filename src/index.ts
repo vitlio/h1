@@ -99,7 +99,7 @@ app.delete('/videos/:id', (req: Request, res: Response) => {
             videosList.splice(videosList.indexOf(deleteUnit), 1)
             res.status(204).send(deleteUnit)
         }else{
-            res.send(404)
+            res.status(404).send("Not Found")
         }
 });
 
