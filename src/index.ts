@@ -46,8 +46,15 @@ app.post('/videos', (req: Request, res: Response) => {
             ]
         })
     } else {
-        let newVideoUnit = {
-            ...req.body, publicationDate: new Date().toISOString()
+        let newVideoUnit: Video = {
+            id: Number(new Date()),
+            title: req.body.title,
+            author: req.body.author,
+            canBeDownloaded: req.body.canBeDownloaded,
+            minAgeRestriction: req.body.minAgeRestriction,
+            createdAt: new Date().toISOString(),
+            publicationDate: new Date().toISOString(),
+            availableResolutions: req.body.availableResolutions
         }
         videosList = [...videosList, newVideoUnit];
         res.status(201).send(newVideoUnit)
