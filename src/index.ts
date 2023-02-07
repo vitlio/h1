@@ -1,9 +1,13 @@
 import express, { Request, Response } from "express";
+import bodyParser from "body-parser"
 import videoRouter from "../routes/api.router"; 
 
 // const express = require('express');
 const app = express();
 const PORT = process.env.PORT||3000;
+
+const parcerMiddleware = bodyParser({})
+app.use(parcerMiddleware)
 
 app.use(express.json())
 
