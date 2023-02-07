@@ -38,7 +38,7 @@ app.post('/videos', (req: Request, res: Response) => {
     // let newVideoUnit = req.body;
     if(!req.body.title||typeof req.body.title !== "string"){
         res.status(400).send({
-            "error messages" : [
+            errorsMessages : [
                 {
                     "message": "No title or author",
                     "field": "title"
@@ -47,7 +47,7 @@ app.post('/videos', (req: Request, res: Response) => {
         })
     }else if(!req.body.author||typeof req.body.author !== "string"){
         res.status(400).send({
-            "error messages" : [
+            errorsMessages : [
                 {
                     "message": "No title or author",
                     "field": "author"
@@ -86,7 +86,7 @@ app.put('/videos/:id', (req: Request, res: Response) => {
     if(updateUnit){
         if(!req.body.title||typeof req.body.title !== "string"){
             res.status(400).send({
-                "error messages" : [
+                errorsMessages : [
                     {
                         "message": "No title or author",
                         "field": "title"
@@ -95,7 +95,7 @@ app.put('/videos/:id', (req: Request, res: Response) => {
             })
         }else if(!req.body.author||typeof req.body.author !== "string"){
             res.status(400).send({
-                "error messages" : [
+                errorsMessages : [
                     {
                         "message": "No title or author",
                         "field": "author"
