@@ -36,7 +36,7 @@ app.get('/videos', (req: Request, res: Response) => {
 
 app.post('/videos', (req: Request, res: Response) => {
     // let newVideoUnit = req.body;
-    if(!req.body.title||!req.body.author){
+    if(!req.body.title||!req.body.author||typeof req.body.title !== "string"||typeof req.body.author !== "string"){
         res.status(400).send({
             "error messages" : [
                 {
@@ -55,9 +55,11 @@ app.post('/videos', (req: Request, res: Response) => {
 });
 
 app.get('/videos/:id', (req: Request, res: Response) => {
-    if(videosList.find(i => i.id === +req.params.id)){
-            let videoUnit = videosList.find(i => i.id === +req.params.id)
-            res.status(200).send(videoUnit)
+
+    let videoUnit = videosList.find(i => i.id === +req.params.id)
+
+    if(videoUnit){
+        res.status(200).send(videoUnit)
     }else{
         res.send(404)
     }
@@ -66,7 +68,7 @@ app.get('/videos/:id', (req: Request, res: Response) => {
 app.put('/videos/:id', (req: Request, res: Response) => {
     let updateUnit = videosList.find(i => i.id === +req.params.id)
     if(updateUnit){
-        if(!req.body.title||!req.body.author){
+        if(!req.body.title||!req.body.author||typeof req.body.title !== "string"||typeof req.body.author !== "string"){
             res.status(400).send({
                 "error messages" : [
                     {
