@@ -7,7 +7,7 @@ const PORT = process.env.PORT||3000;
 
 app.use(express.json())
 
-app.use('/hometask_01/api/videos', videoRouter)
+app.use('/videos', videoRouter)
 app.use('/testing/all-data', videoRouter)
 
 app.get('/', (req: Request, res: Response) => {
