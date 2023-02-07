@@ -10,8 +10,4 @@ app.use(express.json())
 app.use('/videos', videoRouter)
 app.use('/testing/all-data', videoRouter)
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('hello world!');  
-});
-
 app.listen(PORT, () => console.log('Server started ...'));

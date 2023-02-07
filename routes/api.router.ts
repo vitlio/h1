@@ -92,6 +92,7 @@ videoRouter.delete('/:id', (req: Request, res: Response) => {
 videoRouter.delete('/', (req: Request, res: Response) => {
     videosList = []
     res.send(204)
+    return
 });
 
 export default videoRouter;
